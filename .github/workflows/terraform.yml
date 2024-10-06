@@ -1,0 +1,27 @@
+name: 'terraform-automation'
+
+on:
+  push:
+    branches:
+      - terraform-automation
+
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: set up terraform
+        uses: hashicorp/setup-terraform@v2
+
+      - name: Terraform init
+        uses: terraform init
+
+      - name: Terraform plan
+        run : terraform plan
+
+      - name: Terraform apply
+        if : github.ref == 'refs/heads/main'
+        run: terraform apply -auto-approve
