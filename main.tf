@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 resource "aws_s3_bucket" "example_bucket" {
-  bucket = "my-example-bucket"
+  bucket = "rilo-unique-1220"
 
       tags = {
         Name = "terra-githubac-bucket"
