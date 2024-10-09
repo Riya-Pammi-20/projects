@@ -1,0 +1,17 @@
+--- 
+- name: Manage User Permissions
+  hosts: servers
+  become: yes
+  tasks:
+    - name: Ensure a non-root user exists
+      user:
+        name: <username>
+        state: present
+        shell: /bin/bash
+        groups: sudo
+        password: <hashed_passwd>
+
+    - name: Remove unnecessary users
+      user:
+        name: <unwanted user>
+        state: absent

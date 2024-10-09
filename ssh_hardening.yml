@@ -1,0 +1,22 @@
+---
+
+- name: SSH Hardening
+  hosts: servers
+  become: yes
+  tasks:
+    - name: Configure SSHD
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        regexp: '^{{ item.key }}'
+        line: '{{ item.key }} {{ item.value }}'
+      with_items:
+        - { key: "PermitRootLogin", value: "no" }
+        - { key: "PasswordAuthentication", value: "no" }
+        - { key: "ChallengeResponseAuthentication", value: "no" }
+        - { key: "X11Forwarding", value: "no" }
+        - { key: "UsePAM", value: "no" }
+
+    - name: Restart SSH Service
+      service:
+        name: ssh
+        state: restarted

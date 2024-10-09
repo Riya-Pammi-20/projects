@@ -1,0 +1,11 @@
+---
+- name: Apply Security updates
+  hosts: servers
+  become: yes
+  tasks:
+    - name: Install Security updates
+      apt:
+        upgrade: dist
+        update_cache: yes
+
+

@@ -1,0 +1,12 @@
+---
+
+- name: Conduct Security Audits
+  hosts: servers
+  tasks:
+    - name: Check for installed packages
+      command: dpkg -l
+      register: installed_packages
+
+    - name: Ensure no unnecessary packages are installed
+      debug:
+        var: installed_packages.stdout_lines
