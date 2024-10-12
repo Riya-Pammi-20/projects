@@ -1,0 +1,12 @@
+replicaCount: 1
+
+image:
+  repository: riya6470/flask-app
+  tag: "latest"
+  pullPolicy: IfNotPresent
+
+service:
+  type: NodePort
+  port: 5000
+
+resources: {}
